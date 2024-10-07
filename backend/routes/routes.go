@@ -1,0 +1,21 @@
+package api
+
+import (
+	"admin-dashboard/controllers"
+	"admin-dashboard/middleware"
+
+	"github.com/gin-gonic/gin"
+)
+
+func Routes(r *gin.Engine) {
+	// Public routes
+	r.GET("/users", controllers.GetAllUsers)
+	r.POST("/users/signup", controllers.Signup)
+	r.POST("/users/login", controllers.Login)
+
+	// User routes (protected)
+	r.GET("/users/validate",middleware.RequireAuth, controllers.Validate) // Validate user
+	r.PUT("/users/:id", middleware.RequireAuth,controllers.UpdateUser)     // Update user
+	r.DELETE("/users/:id",middleware.RequireAuth, controllers.DeleteUser)  // Delete user
+}
+
