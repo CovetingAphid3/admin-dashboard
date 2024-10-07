@@ -2,7 +2,7 @@ import './index.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import '@fortawesome/fontawesome-free/css/all.css';
+import '@fortawesome/fontawesome-free/css/all.css'
 
 import App from './App.vue'
 

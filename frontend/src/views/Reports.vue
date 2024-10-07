@@ -26,24 +26,43 @@
         <table class="min-w-full divide-y divide-gray-200">
           <thead class="bg-gray-50">
             <tr>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Report Type</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <th
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                ID
+              </th>
+              <th
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                User
+              </th>
+              <th
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Report Type
+              </th>
+              <th
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Date
+              </th>
+              <th
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
             <tr v-for="report in filteredReports" :key="report.id" class="hover:bg-gray-50">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#{{ report.id }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                #{{ report.id }}
+              </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ report.user }}</td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ report.type }}</td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ report.date }}</td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <button
-                  @click="viewReport(report.id)"
-                  class="text-blue-600 hover:text-blue-800"
-                >
+                <button @click="viewReport(report.id)" class="text-blue-600 hover:text-blue-800">
                   <i class="fas fa-eye mr-1"></i> View
                 </button>
                 <button
@@ -62,42 +81,42 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed } from 'vue'
 
 const reports = ref([
   { id: 1, user: 'John Doe', type: 'Sales Report', date: '2024-10-01' },
   { id: 2, user: 'Jane Smith', type: 'Inventory Report', date: '2024-10-02' },
   { id: 3, user: 'Alice Brown', type: 'Expense Report', date: '2024-10-03' },
-  { id: 4, user: 'Bob Johnson', type: 'User Activity Report', date: '2024-10-04' },
-]);
+  { id: 4, user: 'Bob Johnson', type: 'User Activity Report', date: '2024-10-04' }
+])
 
-const filterQuery = ref('');
+const filterQuery = ref('')
 
 const filteredReports = computed(() => {
-  return reports.value.filter(report => 
-    report.user.toLowerCase().includes(filterQuery.value.toLowerCase()) || 
-    report.type.toLowerCase().includes(filterQuery.value.toLowerCase())
-  );
-});
+  return reports.value.filter(
+    (report) =>
+      report.user.toLowerCase().includes(filterQuery.value.toLowerCase()) ||
+      report.type.toLowerCase().includes(filterQuery.value.toLowerCase())
+  )
+})
 
 const applyFilter = () => {
   // Logic to apply filter if needed
-  console.log('Filter applied:', filterQuery.value);
-};
+  console.log('Filter applied:', filterQuery.value)
+}
 
 const viewReport = (id: number) => {
   // Logic to view the report details
-  console.log('View report with ID:', id);
-};
+  console.log('View report with ID:', id)
+}
 
 const deleteReport = (id: number) => {
   // Logic to delete the report
-  console.log('Delete report with ID:', id);
-  reports.value = reports.value.filter(report => report.id !== id);
-};
+  console.log('Delete report with ID:', id)
+  reports.value = reports.value.filter((report) => report.id !== id)
+}
 </script>
 
 <style scoped>
 /* Additional styling can be added here if needed */
 </style>
-

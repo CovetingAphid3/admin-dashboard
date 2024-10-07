@@ -25,13 +25,15 @@ func GetAllUsers(c *gin.Context) {
 }
 
 func Signup(c *gin.Context) {
-	// get email and password from request body
+	// get email, password, first name, and last name from request body
 	var body struct {
-		Email    string
-		Password string
+		Email     string `json:"email"`
+		Password  string `json:"password"`
+		FirstName string `json:"first_name"`
+		LastName  string `json:"last_name"`
 	}
 
-	if c.Bind(&body) != nil {
+	if err := c.BindJSON(&body); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
 		return
 	}
@@ -49,8 +51,17 @@ func Signup(c *gin.Context) {
 		return
 	}
 
-	// create the user with a default role
-	user := models.User{Email: body.Email, Password: string(hash), Role: "user"}
+	// create the user with a default role and additional fields
+	user := models.User{
+		Email:     body.Email,
+		Password:  string(hash),
+		Role:      "user",
+		FirstName: body.FirstName,
+		LastName:  body.LastName,
+		IsActive:  true, // set IsActive to true by default
+		LastLogin: time.Time{}, // set to zero value (no last login)
+	}
+
 	result := initializers.DB.Create(&user)
 	if result.Error != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Failed to create user"})
@@ -60,6 +71,7 @@ func Signup(c *gin.Context) {
 	// respond with success
 	c.JSON(http.StatusOK, gin.H{"message": "User created successfully"})
 }
+
 
 
 func Login(c *gin.Context) {

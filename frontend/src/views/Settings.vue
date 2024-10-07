@@ -6,7 +6,9 @@
       <h2 class="text-xl font-semibold text-gray-700 mb-4">Profile Settings</h2>
       <form @submit.prevent="updateProfile">
         <div class="mb-4">
-          <label for="username" class="block text-sm font-medium text-gray-600 mb-1">Username</label>
+          <label for="username" class="block text-sm font-medium text-gray-600 mb-1"
+            >Username</label
+          >
           <input
             type="text"
             id="username"
@@ -28,7 +30,9 @@
         </div>
 
         <div class="mb-4">
-          <label for="password" class="block text-sm font-medium text-gray-600 mb-1">Password</label>
+          <label for="password" class="block text-sm font-medium text-gray-600 mb-1"
+            >Password</label
+          >
           <input
             type="password"
             id="password"
@@ -50,30 +54,15 @@
     <div class="bg-white rounded-lg shadow-md p-6 mt-6">
       <h2 class="text-xl font-semibold text-gray-700 mb-4">Notification Preferences</h2>
       <div class="flex items-center mb-4">
-        <input
-          type="checkbox"
-          id="emailNotifications"
-          v-model="notifications.email"
-          class="mr-2"
-        />
+        <input type="checkbox" id="emailNotifications" v-model="notifications.email" class="mr-2" />
         <label for="emailNotifications" class="text-gray-600">Email Notifications</label>
       </div>
       <div class="flex items-center mb-4">
-        <input
-          type="checkbox"
-          id="smsNotifications"
-          v-model="notifications.sms"
-          class="mr-2"
-        />
+        <input type="checkbox" id="smsNotifications" v-model="notifications.sms" class="mr-2" />
         <label for="smsNotifications" class="text-gray-600">SMS Notifications</label>
       </div>
       <div class="flex items-center mb-4">
-        <input
-          type="checkbox"
-          id="pushNotifications"
-          v-model="notifications.push"
-          class="mr-2"
-        />
+        <input type="checkbox" id="pushNotifications" v-model="notifications.push" class="mr-2" />
         <label for="pushNotifications" class="text-gray-600">Push Notifications</label>
       </div>
     </div>
@@ -91,32 +80,31 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
 
 const user = ref({
   username: 'JohnDoe',
   email: 'john.doe@example.com',
-  password: '',
-});
+  password: ''
+})
 
 const notifications = ref({
   email: true,
   sms: false,
-  push: true,
-});
+  push: true
+})
 
 const updateProfile = () => {
   // Logic to update the user profile
-  console.log('Profile updated:', user.value, notifications.value);
-};
+  console.log('Profile updated:', user.value, notifications.value)
+}
 
 const deleteAccount = () => {
   // Logic to delete the user account
-  console.log('Account deleted');
-};
+  console.log('Account deleted')
+}
 </script>
 
 <style scoped>
 /* Additional styling can be added here if needed */
 </style>
-
