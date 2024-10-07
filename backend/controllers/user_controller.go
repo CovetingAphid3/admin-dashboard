@@ -1,14 +1,15 @@
 package controllers
 
 import (
-    "os"
 	"admin-dashboard/initializers"
 	"admin-dashboard/models"
+	"net/http"
+	"os"
+	"time"
+
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
 	"golang.org/x/crypto/bcrypt"
-	"net/http"
-	"time"
 )
 
 func GetAllUsers(c *gin.Context) {

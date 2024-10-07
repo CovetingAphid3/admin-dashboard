@@ -6,13 +6,11 @@
       <h2 class="text-xl font-semibold text-gray-700 mb-4">Profile Settings</h2>
       <form @submit.prevent="updateProfile">
         <div class="mb-4">
-          <label for="username" class="block text-sm font-medium text-gray-600 mb-1"
-            >Username</label
-          >
+          <label for="username" class="block text-sm font-medium text-gray-600 mb-1">Username</label>
           <input
             type="text"
             id="username"
-            v-model="user.username"
+            v-model="user.first_name"
             class="border rounded-lg p-2 w-full shadow-sm"
             required
           />
@@ -30,15 +28,13 @@
         </div>
 
         <div class="mb-4">
-          <label for="password" class="block text-sm font-medium text-gray-600 mb-1"
-            >Password</label
-          >
+          <label for="password" class="block text-sm font-medium text-gray-600 mb-1">Password</label>
           <input
             type="password"
             id="password"
             v-model="user.password"
             class="border rounded-lg p-2 w-full shadow-sm"
-            required
+            placeholder="Enter new password if you want to change it"
           />
         </div>
 
@@ -80,11 +76,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const user = ref({
-  username: 'JohnDoe',
-  email: 'john.doe@example.com',
+  first_name: '',
+  email: '',
   password: ''
 })
 
@@ -93,6 +89,24 @@ const notifications = ref({
   sms: false,
   push: true
 })
+
+const fetchUserData = async () => {
+  try {
+    const response = await fetch('http://localhost:8000/users/me', {
+      credentials: 'include' // Ensures the cookie is included
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch user data')
+    }
+
+    const data = await response.json()
+    user.value.first_name = data.first_name
+    user.value.email = data.email
+  } catch (error) {
+    console.error('Error fetching user data:', error.message)
+  }
+}
 
 const updateProfile = () => {
   // Logic to update the user profile
@@ -103,8 +117,14 @@ const deleteAccount = () => {
   // Logic to delete the user account
   console.log('Account deleted')
 }
+
+// Fetch user data when the component is mounted
+onMounted(() => {
+  fetchUserData()
+})
 </script>
 
 <style scoped>
 /* Additional styling can be added here if needed */
 </style>
+

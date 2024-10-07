@@ -4,6 +4,7 @@ import Users from '../views/Users.vue'
 import Settings from '../views/Settings.vue'
 import Reports from '../views/Reports.vue'
 import Auth from '../views/Auth.vue'
+import CurrentUser from '../views/CurrentUser.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
       path: '/auth',
       name: 'Auth',
       component: Auth
+    },
+    {
+      path: '/me',
+      name: 'CurrentUser',
+      component: CurrentUser
     },
     {
       path: '/about',
