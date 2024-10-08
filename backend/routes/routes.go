@@ -17,5 +17,10 @@ func Routes(r *gin.Engine) {
 	r.GET("/users/validate",middleware.RequireAuth, controllers.Validate) // Validate user
 	r.PUT("/users/:id", middleware.RequireAuth,controllers.UpdateUser)     // Update user
 	r.DELETE("/users/:id",middleware.RequireAuth, controllers.DeleteUser)  // Delete user
+
+	//Announcement Routes
+	r.GET("/announcements", controllers.GetAllAnnouncements)
+	r.POST("/announcements",controllers.PostAnnouncement)
+	r.POST("/announcements/:id",controllers.DeleteAnnouncement)
 }
 
