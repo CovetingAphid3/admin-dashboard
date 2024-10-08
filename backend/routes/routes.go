@@ -25,5 +25,13 @@ func Routes(r *gin.Engine) {
 	r.GET("/announcements", controllers.GetAllAnnouncements)
 	r.POST("/announcements",controllers.PostAnnouncement)
 	r.POST("/announcements/:id",controllers.DeleteAnnouncement)
+
+	//Transaction Routes
+	r.POST("/transactions", controllers.CreateTransaction)
+	r.GET("/transactions/:id", controllers.GetTransaction)
+	r.GET("/transactions", controllers.GetTransactions)
+	r.PUT("/transactions/:id", controllers.UpdateTransaction)
+	r.DELETE("/transactions/:id", controllers.DeleteTransaction)
+	r.GET("/transactions/user/:user", controllers.GetTransactionsByUser)
 }
 
