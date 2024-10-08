@@ -149,17 +149,16 @@ const editUser = (userId: number) => {
 
 const deleteUser = async (userId: number) => {
   try {
-    const response = await axios.delete(`http://localhost:8000/users/${userId}`);
-    console.log('Delete response:', response); // Log the response
+    const response = await axios.delete(`http://localhost:8000/users/${userId}`)
+    console.log('Delete response:', response) // Log the response
     if (response.status === 200) {
-      users.value = users.value.filter((user) => user.id !== userId);
-      console.log(`Delete user with ID: ${userId}`);
+      users.value = users.value.filter((user) => user.id !== userId)
+      console.log(`Delete user with ID: ${userId}`)
     }
   } catch (error) {
-    console.error('Error deleting user:', error);
+    console.error('Error deleting user:', error)
   }
 }
-
 
 const nextPage = () => {
   if (currentPage.value * pageSize < users.value.length) {

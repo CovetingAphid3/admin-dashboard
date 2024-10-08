@@ -13,6 +13,9 @@ func Routes(r *gin.Engine) {
 	r.POST("/users/signup", controllers.Signup)
 	r.POST("/users/login", controllers.Login)
 
+	r.GET("/users/me", controllers.GetCurrentUser)
+
+
 	// User routes (protected)
 	r.GET("/users/validate",middleware.RequireAuth, controllers.Validate) // Validate user
 	r.PUT("/users/:id", middleware.RequireAuth,controllers.UpdateUser)     // Update user

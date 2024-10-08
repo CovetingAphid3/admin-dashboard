@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import axios from 'axios';
+import axios from 'axios'
 
 // Declare announcements as a ref so Vue can track reactivity
 const announcements = ref([])
@@ -45,20 +45,19 @@ const formatDate = (dateString: string) => {
 // Function to fetch announcements from the API
 const fetchAnnouncements = async () => {
   try {
-    const response = await axios.get('http://localhost:8000/announcements');
+    const response = await axios.get('http://localhost:8000/announcements')
     // Assign the response data to announcements.value to maintain reactivity
-    announcements.value = response.data;
-    console.log(announcements.value);
+    announcements.value = response.data
+    console.log(announcements.value)
   } catch (error) {
-    console.error('Error fetching announcements:', error);
+    console.error('Error fetching announcements:', error)
   }
-};
+}
 
 // Fetch announcements when the component is created
-fetchAnnouncements();
+fetchAnnouncements()
 </script>
 
 <style scoped>
 /* Add any scoped styles here */
 </style>
-

@@ -44,16 +44,13 @@
           </div>
         </div>
 
-        <button
-          type="submit"
-          class="bg-blue-500 text-white px-4 py-2 rounded-lg w-full"
-        >
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg w-full">
           {{ isLogin ? 'Login' : 'Signup' }}
         </button>
       </form>
 
       <p class="mt-4 text-gray-600">
-        {{ isLogin ? "Don't have an account?" : "Already have an account?" }}
+        {{ isLogin ? "Don't have an account?" : 'Already have an account?' }}
         <button @click="toggleAuth" class="text-blue-500 underline">
           {{ isLogin ? 'Signup' : 'Login' }}
         </button>
@@ -63,32 +60,39 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import axios from 'axios';
+import { ref } from 'vue'
+import axios from 'axios'
 
-const isLogin = ref(true);
-const email = ref('');
-const password = ref('');
-const firstName = ref('');
-const lastName = ref('');
+const isLogin = ref(true)
+const email = ref('')
+const password = ref('')
+const firstName = ref('')
+const lastName = ref('')
 
 const handleSubmit = async () => {
-  const url = isLogin.value ? 'http://localhost:8000/users/login' : 'http://localhost:8000/users/signup';
-  const body = isLogin.value 
-    ? { Email: email.value, Password: password.value } 
-    : { Email: email.value, Password: password.value, FirstName: firstName.value, LastName: lastName.value };
+  const url = isLogin.value
+    ? 'http://localhost:8000/users/login'
+    : 'http://localhost:8000/users/signup'
+  const body = isLogin.value
+    ? { Email: email.value, Password: password.value }
+    : {
+        Email: email.value,
+        Password: password.value,
+        FirstName: firstName.value,
+        LastName: lastName.value
+      }
 
   try {
-    const response = await axios.post(url, body);
-    console.log(response.data); // Handle successful response (e.g., redirect or show message)
+    const response = await axios.post(url, body)
+    console.log(response.data) // Handle successful response (e.g., redirect or show message)
   } catch (error) {
-    console.error('Error during login/signup:', error.response.data);
+    console.error('Error during login/signup:', error.response.data)
   }
-};
+}
 
 const toggleAuth = () => {
-  isLogin.value = !isLogin.value;
-};
+  isLogin.value = !isLogin.value
+}
 </script>
 
 <style scoped>
@@ -97,4 +101,3 @@ input:focus {
   border-color: #3182ce;
 }
 </style>
-

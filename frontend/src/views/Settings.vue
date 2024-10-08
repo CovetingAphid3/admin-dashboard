@@ -6,7 +6,9 @@
       <h2 class="text-xl font-semibold text-gray-700 mb-4">Profile Settings</h2>
       <form @submit.prevent="updateProfile">
         <div class="mb-4">
-          <label for="username" class="block text-sm font-medium text-gray-600 mb-1">Username</label>
+          <label for="username" class="block text-sm font-medium text-gray-600 mb-1"
+            >Username</label
+          >
           <input
             type="text"
             id="username"
@@ -28,7 +30,9 @@
         </div>
 
         <div class="mb-4">
-          <label for="password" class="block text-sm font-medium text-gray-600 mb-1">Password</label>
+          <label for="password" class="block text-sm font-medium text-gray-600 mb-1"
+            >Password</label
+          >
           <input
             type="password"
             id="password"
@@ -127,4 +131,3 @@ onMounted(() => {
 <style scoped>
 /* Additional styling can be added here if needed */
 </style>
-

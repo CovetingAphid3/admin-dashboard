@@ -6,11 +6,58 @@ import (
 	"net/http"
 	"os"
 	"time"
-
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
 	"golang.org/x/crypto/bcrypt"
 )
+
+func GetCurrentUser(c *gin.Context) {
+    // Get the Authorization cookie
+    tokenString, err := c.Cookie("Authorization")
+    if err != nil {
+        c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+        return
+    }
+
+    // Parse the token
+    token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+        // Validate the signing method
+        if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+            return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
+        }
+        // Return the secret key
+        return []byte(os.Getenv("SECRET")), nil
+    })
+
+    if err != nil || !token.Valid {
+        c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token"})
+        return
+    }
+
+    // Get claims and extract user ID
+    claims, ok := token.Claims.(jwt.MapClaims)
+    if !ok || !token.Valid {
+        c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token"})
+        return
+    }
+
+    userID := claims["sub"].(float64) // JWT stores numbers as float64
+
+    // Fetch the user from the database
+    var user models.User
+    if err := initializers.DB.First(&user, int(userID)).Error; err != nil {
+        c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+        return
+    }
+
+    // Return the user's first name and email
+    c.JSON(http.StatusOK, gin.H{
+        "first_name": user.FirstName,
+        "email":      user.Email,
+    })
+}
+
 
 func GetAllUsers(c *gin.Context) {
     var users []models.User

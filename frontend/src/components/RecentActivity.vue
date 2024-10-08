@@ -13,9 +13,7 @@
           <div
             :class="[
               'flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center',
-              activity.type === 'user'
-                ? 'bg-blue-100 text-blue-600'
-                : 'bg-green-100 text-green-600'
+              activity.type === 'user' ? 'bg-blue-100 text-blue-600' : 'bg-green-100 text-green-600'
             ]"
           >
             <i :class="activity.icon"></i>
@@ -43,15 +41,16 @@ import { ref, PropType } from 'vue'
 
 const props = defineProps({
   recentActivities: {
-    type: Array as PropType<Array<{
-      id: number
-      type: string
-      icon: string
-      description: string
-      time: string
-    }>>,
+    type: Array as PropType<
+      Array<{
+        id: number
+        type: string
+        icon: string
+        description: string
+        time: string
+      }>
+    >,
     required: true
   }
 })
 </script>
-

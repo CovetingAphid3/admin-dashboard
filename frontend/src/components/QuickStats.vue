@@ -23,18 +23,19 @@ import { ref, PropType } from 'vue'
 
 const props = defineProps({
   quickStats: {
-    type: Array as PropType<Array<{
-      title: string
-      value: string
-      change: string
-      icon: string
-      iconColor: string
-      valueColor: string
-      changeColor: string
-      changeIcon: string
-    }>>,
+    type: Array as PropType<
+      Array<{
+        title: string
+        value: string
+        change: string
+        icon: string
+        iconColor: string
+        valueColor: string
+        changeColor: string
+        changeIcon: string
+      }>
+    >,
     required: true
   }
 })
 </script>
-
