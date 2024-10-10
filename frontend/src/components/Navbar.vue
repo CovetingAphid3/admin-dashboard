@@ -43,19 +43,6 @@
             </button>
           </div>
           <div class="ml-3 relative">
-            <div>
-              <button
-                @click="toggleUserMenu"
-                class="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-              >
-                <span class="sr-only">Open user menu</span>
-                <img
-                  class="h-8 w-8 rounded-full"
-                  src="https://via.placeholder.com/40"
-                  alt="User avatar"
-                />
-              </button>
-            </div>
             <div
               v-if="isUserMenuOpen"
               class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
@@ -181,11 +168,13 @@ const toggleSearch = () => {
 }
 
 const navItems = computed(() => [
-  { name: 'Dashboard', to: '/', current: route.path === '/' },
-  { name: 'Users', to: '/users', current: route.path === '/users' },
-  { name: 'Settings', to: '/settings', current: route.path === '/settings' },
+    { name: 'Dashboard', to: '/', current: route.path === '/' },
+  { name: 'Analytics', to: '/analytics', current: route.path === '/analytics' },
+  { name: 'Roles & Permissions', to: '/users', current: route.path === '/users' },
+  { name: 'Activity Log', to: '/activity-log', current: route.path === '/activity-log' },
   { name: 'Reports', to: '/reports', current: route.path === '/reports' },
-  { name: 'About', to: '/about', current: route.path === '/about' },
+  { name: 'System Health', to: '/system-health', current: route.path === '/system-health' },
+  { name: 'Settings', to: '/settings', current: route.path === '/settings' },
   { name: 'Log In', to: '/auth', current: route.path === '/auth' }
 ])
 </script>
