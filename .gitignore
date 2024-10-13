@@ -9,6 +9,7 @@ tmp/
 
 # Local environment files
 .env
+.env.test
 .env.local
 .env.development.local
 .env.test.local
