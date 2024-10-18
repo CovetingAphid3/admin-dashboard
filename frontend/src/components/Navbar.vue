@@ -168,7 +168,7 @@ const toggleSearch = () => {
 }
 
 const navItems = computed(() => [
-    { name: 'Dashboard', to: '/', current: route.path === '/' },
+  { name: 'Dashboard', to: '/', current: route.path === '/' },
   { name: 'Analytics', to: '/analytics', current: route.path === '/analytics' },
   { name: 'Roles & Permissions', to: '/users', current: route.path === '/users' },
   { name: 'Activity Log', to: '/activity-log', current: route.path === '/activity-log' },
