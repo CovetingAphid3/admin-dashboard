@@ -110,27 +110,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
-import axios from 'axios'
+import { ref, computed } from 'vue'
 
-const users = ref([]) // Initialize as an empty array
+const users = ref([
+  { ID: 1, first_name: 'Alice', email: 'alice@example.com', role: 'Admin', is_active: true },
+  { ID: 2, first_name: 'Bob', email: 'bob@example.com', role: 'User', is_active: false },
+  { ID: 3, first_name: 'Charlie', email: 'charlie@example.com', role: 'Moderator', is_active: true },
+  { ID: 4, first_name: 'David', email: 'david@example.com', role: 'User', is_active: false },
+  { ID: 5, first_name: 'Eve', email: 'eve@example.com', role: 'Admin', is_active: true }
+])
+
 const searchQuery = ref('')
 const currentPage = ref(1)
 const pageSize = 10 // Adjust the number of items displayed per page
-
-// Fetch users from the backend when the component is mounted
-const fetchUsers = async () => {
-  try {
-    const response = await axios.get('http://localhost:8000/users') // Adjust the URL if necessary
-    console.log(response.data)
-    users.value = response.data // Assign the fetched data to the users array
-  } catch (error) {
-    console.error('Error fetching users:', error)
-  }
-}
-
-// Call fetchUsers when the component is mounted
-onMounted(fetchUsers)
 
 const filteredUsers = computed(() => {
   const query = searchQuery.value.toLowerCase()
@@ -147,17 +139,10 @@ const editUser = (userId: number) => {
   console.log(`Edit user with ID: ${userId}`)
 }
 
-const deleteUser = async (userId: number) => {
-  try {
-    const response = await axios.delete(`http://localhost:8000/users/${userId}`)
-    console.log('Delete response:', response) // Log the response
-    if (response.status === 200) {
-      users.value = users.value.filter((user) => user.id !== userId)
-      console.log(`Delete user with ID: ${userId}`)
-    }
-  } catch (error) {
-    console.error('Error deleting user:', error)
-  }
+const deleteUser = (userId: number) => {
+  // Logic to delete the user
+  users.value = users.value.filter((user) => user.ID !== userId)
+  console.log(`Deleted user with ID: ${userId}`)
 }
 
 const nextPage = () => {
@@ -184,3 +169,4 @@ td {
   border: 1px solid #e2e8f0;
 }
 </style>
+

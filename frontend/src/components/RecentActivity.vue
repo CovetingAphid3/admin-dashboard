@@ -37,7 +37,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, PropType } from 'vue'
+import { ref } from 'vue'
+import type { PropType } from 'vue'
 
 const props = defineProps({
   recentActivities: {

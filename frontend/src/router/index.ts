@@ -5,49 +5,62 @@ import Settings from '../views/Settings.vue'
 import Reports from '../views/Reports.vue'
 import Auth from '../views/Auth.vue'
 import CurrentUser from '../views/CurrentUser.vue'
+import Analytics from '../views/Analytics.vue'
+import ActivityLog from '../views/ActivityLog.vue'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/users',
-      name: 'Users',
-      component: Users
-    },
-    {
-      path: '/settings',
-      name: 'Settings',
-      component: Settings
-    },
-    {
-      path: '/reports',
-      name: 'Reports',
-      component: Reports
-    },
-    {
-      path: '/auth',
-      name: 'Auth',
-      component: Auth
-    },
-    {
-      path: '/me',
-      name: 'CurrentUser',
-      component: CurrentUser
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
-  ]
+    history: createWebHistory(import.meta.env.BASE_URL),
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: HomeView
+        },
+        {
+            path: '/users',
+            name: 'Users',
+            component: Users
+        },
+        {
+            path: '/settings',
+            name: 'Settings',
+            component: Settings
+        },
+        {
+            path: '/reports',
+            name: 'Reports',
+            component: Reports
+        },
+        {
+            path: '/auth',
+            name: 'Auth',
+            component: Auth
+        },
+        {
+            path: '/me',
+            name: 'CurrentUser',
+            component: CurrentUser
+        },
+        {
+            path: '/analytics',
+            name: 'Analytics',
+            component: Analytics
+        },
+        {
+            path: '/activity-log',
+            name: 'Acitivity-Log',
+            component: ActivityLog
+        },
+
+        {
+            path: '/about',
+            name: 'about',
+            // route level code-splitting
+            // this generates a separate chunk (About.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import('../views/AboutView.vue')
+        }
+    ]
 })
 
 export default router

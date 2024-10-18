@@ -94,35 +94,23 @@ const notifications = ref({
   push: true
 })
 
-const fetchUserData = async () => {
-  try {
-    const response = await fetch('http://localhost:8000/users/me', {
-      credentials: 'include' // Ensures the cookie is included
-    })
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch user data')
-    }
-
-    const data = await response.json()
-    user.value.first_name = data.first_name
-    user.value.email = data.email
-  } catch (error) {
-    console.error('Error fetching user data:', error.message)
-  }
+const fetchUserData = () => {
+  // Mock user data for the proof of concept
+  user.value.first_name = 'John Doe'
+  user.value.email = 'john.doe@example.com'
 }
 
 const updateProfile = () => {
-  // Logic to update the user profile
+  // Mock profile update logic
   console.log('Profile updated:', user.value, notifications.value)
 }
 
 const deleteAccount = () => {
-  // Logic to delete the user account
+  // Mock account deletion logic
   console.log('Account deleted')
 }
 
-// Fetch user data when the component is mounted
+// Fetch user data when the component is mounted (proof of concept)
 onMounted(() => {
   fetchUserData()
 })
@@ -131,3 +119,4 @@ onMounted(() => {
 <style scoped>
 /* Additional styling can be added here if needed */
 </style>
+

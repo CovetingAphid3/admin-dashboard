@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center">
         <div class="flex items-center">
-          <img class="h-8 w-auto" src="@/assets/logo.svg" alt="Logo" />
+          <img class="h-8 w-auto" src="@/assets/preferences.svg" alt="Logo" />
           <span class="ml-2 text-sm">&copy; 2024 Admin Panel. All rights reserved.</span>
         </div>
         <div class="flex space-x-6">

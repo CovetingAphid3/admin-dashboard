@@ -31,10 +31,28 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import axios from 'axios'
 
-// Declare announcements as a ref so Vue can track reactivity
-const announcements = ref([])
+// Declare announcements as a ref with mock data
+const announcements = ref([
+  {
+    id: 1,
+    title: "System Maintenance",
+    body: "Our systems will undergo maintenance on Friday.",
+    start_date: "2024-10-20"
+  },
+  {
+    id: 2,
+    title: "New Feature Launch",
+    body: "We are excited to announce a new feature!",
+    start_date: "2024-10-18"
+  },
+  {
+    id: 3,
+    title: "Holiday Schedule",
+    body: "Please note our holiday schedule for the upcoming season.",
+    start_date: "2024-12-01"
+  }
+])
 
 // Function to format the date
 const formatDate = (dateString: string) => {
@@ -42,22 +60,9 @@ const formatDate = (dateString: string) => {
   return new Date(dateString).toLocaleDateString(undefined, options)
 }
 
-// Function to fetch announcements from the API
-const fetchAnnouncements = async () => {
-  try {
-    const response = await axios.get('http://localhost:8000/announcements')
-    // Assign the response data to announcements.value to maintain reactivity
-    announcements.value = response.data
-    console.log(announcements.value)
-  } catch (error) {
-    console.error('Error fetching announcements:', error)
-  }
-}
-
-// Fetch announcements when the component is created
-fetchAnnouncements()
 </script>
 
 <style scoped>
 /* Add any scoped styles here */
 </style>
+

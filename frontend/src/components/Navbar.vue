@@ -4,7 +4,7 @@
       <div class="flex justify-between h-16">
         <div class="flex items-center">
           <div class="flex-shrink-0 flex items-center">
-            <img class="h-8 w-auto" src="@/assets/logo.svg" alt="Logo" />
+            <img class="h-8 w-auto" src="@/assets/preferences.svg" alt="Logo" />
             <span class="ml-2 text-xl font-semibold">Admin Panel</span>
           </div>
           <div class="hidden md:flex md:ml-6 md:space-x-4">
@@ -173,7 +173,6 @@ const navItems = computed(() => [
   { name: 'Roles & Permissions', to: '/users', current: route.path === '/users' },
   { name: 'Activity Log', to: '/activity-log', current: route.path === '/activity-log' },
   { name: 'Reports', to: '/reports', current: route.path === '/reports' },
-  { name: 'System Health', to: '/system-health', current: route.path === '/system-health' },
   { name: 'Settings', to: '/settings', current: route.path === '/settings' },
   { name: 'Log In', to: '/auth', current: route.path === '/auth' }
 ])

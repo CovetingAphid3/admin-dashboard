@@ -61,7 +61,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import axios from 'axios'
 
 const isLogin = ref(true)
 const email = ref('')
@@ -69,24 +68,39 @@ const password = ref('')
 const firstName = ref('')
 const lastName = ref('')
 
-const handleSubmit = async () => {
-  const url = isLogin.value
-    ? 'http://localhost:8000/users/login'
-    : 'http://localhost:8000/users/signup'
-  const body = isLogin.value
-    ? { Email: email.value, Password: password.value }
-    : {
-        Email: email.value,
-        Password: password.value,
-        FirstName: firstName.value,
-        LastName: lastName.value
-      }
+// Mock user data for login/signup
+const mockUsers = ref([
+  { email: 'testuser@example.com', password: 'password123', firstName: 'Test', lastName: 'User' }
+])
 
-  try {
-    const response = await axios.post(url, body)
-    console.log(response.data) // Handle successful response (e.g., redirect or show message)
-  } catch (error) {
-    console.error('Error during login/signup:', error.response.data)
+const handleSubmit = () => {
+  if (isLogin.value) {
+    // Mock login
+    const user = mockUsers.value.find(
+      (user) => user.email === email.value && user.password === password.value
+    )
+    if (user) {
+      console.log('Login successful:', user)
+      // Simulate redirect or other post-login actions
+    } else {
+      console.error('Invalid credentials')
+    }
+  } else {
+    // Mock signup (ensure user doesn't already exist)
+    const existingUser = mockUsers.value.find((user) => user.email === email.value)
+    if (existingUser) {
+      console.error('User already exists')
+    } else {
+      const newUser = {
+        email: email.value,
+        password: password.value,
+        firstName: firstName.value,
+        lastName: lastName.value
+      }
+      mockUsers.value.push(newUser)
+      console.log('Signup successful:', newUser)
+      // Simulate redirect or other post-signup actions
+    }
   }
 }
 
@@ -101,3 +115,4 @@ input:focus {
   border-color: #3182ce;
 }
 </style>
+
